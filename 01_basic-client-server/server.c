@@ -76,8 +76,9 @@ int main(int argc, char **argv)
     struct rdma_cm_event event_copy;
 
     memcpy(&event_copy, event, sizeof(*event));
+    // will free *event
     rdma_ack_cm_event(event);
-
+    
     if (on_event(&event_copy))
       break;
   }
